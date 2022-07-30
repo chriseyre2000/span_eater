@@ -1,5 +1,6 @@
 defmodule SpanEater.Router do
   use Plug.Router
+  require Logger
 
   def child_spec do
     {
@@ -14,6 +15,11 @@ defmodule SpanEater.Router do
   plug(:dispatch)
 
   post "/v1/traces"  do
+    Logger.info("Span recieved")
+    for x <- conn.req_headers, do: IO.inspect(x)
+    {:ok, data, _conn} = read_body(conn)
+    msg = Protox.decode!(data, TracesData)
+    IO.inspect(msg, label: "Decoded trace")
     send_resp(conn, 200, "OK?")
   end
 
