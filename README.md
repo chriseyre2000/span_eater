@@ -116,3 +116,11 @@ This is the output from my something_to_measure repo:
 ```
 
 Note that the span_id and trace_id are binary values, and have not been failed to translate as it appears. 
+
+If you are an asdf user you need to install protoc first: 
+
+```
+asdf plugin-add protoc https://github.com/paxosglobal/asdf-protoc.git
+asdf global protoc 3.20.0
+asdf install protoc 3.20.0
+```
