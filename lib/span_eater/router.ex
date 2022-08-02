@@ -17,10 +17,10 @@ defmodule SpanEater.Router do
   post "/v1/traces"  do
     Logger.info("Span recieved")
     for x <- conn.req_headers, do: IO.inspect(x)
-    {:ok, data, _conn} = read_body(conn)
-    msg = Protox.decode!(data, TracesData)
+    {:ok, data, conn} = read_body(conn)
+    msg = Protox.decode!(data, OpenTelemetryProtobuf.TracesData)
     IO.inspect(msg, label: "Decoded trace")
-    send_resp(conn, 200, "OK?")
+    send_resp(conn, 200, "OK")
   end
 
   match _ do
