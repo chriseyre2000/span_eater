@@ -1,4 +1,4 @@
-defmodule ProtobufFiles do
+defmodule OpenTelemetryProtobufFiles do
   use Protox, schema: """
   syntax = "proto3";
 
